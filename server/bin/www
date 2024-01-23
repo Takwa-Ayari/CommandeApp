@@ -8,6 +8,12 @@ var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
 const sequelize = require('../databaseConnection');
+const User = require('../models/user.model');
+const Categorie = require('../models/categorie.model');
+//const Commande = require('../models/commande.model');
+const Produit = require('../models/produit.model');
+//const ProduitCommande = require('../models/produitCommande.model');
+
 
 /**
  * Connect to database
