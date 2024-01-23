@@ -7,6 +7,18 @@
 var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
+const sequelize = require('../databaseConnection');
+
+/**
+ * Connect to database
+ */
+sequelize.sync()
+    .then(() => {
+        console.log('Database synced successfully');
+    })
+    .catch((error) => {
+        console.error('Error syncing database:', error);
+    });
 
 /**
  * Get port from environment and store in Express.
