@@ -11,6 +11,10 @@ const Produit = sequelize.define('Produit', {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
     },
+    quantity : {
+        type : DataTypes.INTEGER,
+        allowNull : false
+    }
 });
 
 Produit.belongsTo(Categorie);

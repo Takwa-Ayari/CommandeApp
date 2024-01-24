@@ -1,11 +1,24 @@
 import './App.css'
+import Footer from './components/Footer'
+import Navbar from './components/Navbar'
+// import { ProduitAddForm } from './components/ProduitAddForm'
+// import Produits from './pages/Produits'
+import ProduitsAdmin from './pages/ProduitsAdmin'
 
 function App() {
 
   return (
-    <h1 className="text-3xl text-red-800 font-bold underline hover:text-blue-300">
-      Hello world!
-    </h1>
+    <div>
+      <div>
+        <Navbar />
+      </div>
+      <div>
+        <ProduitsAdmin />
+      </div>
+      <div className='sticky bottom-0 w-full'>
+        <Footer />
+      </div>
+    </div>
   )
 }
 
