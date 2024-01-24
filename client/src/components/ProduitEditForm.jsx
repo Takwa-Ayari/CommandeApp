@@ -2,7 +2,7 @@
 import {useState} from 'react';
 import { editProduit } from '../apis/produit.api';
 
-export const ProduitEditForm = ({produit}) => {
+export const ProduitEditForm = ({produit , onFormSubmit}) => {
     
     const [nom , setNom ] = useState(produit.nom);
     const [prix , setPrix ] = useState(produit.prix);
@@ -12,7 +12,13 @@ export const ProduitEditForm = ({produit}) => {
         e.preventDefault()
         console.log(nom + prix + quantity)
         const product = {nom : nom , prix : prix , quantity : quantity};
-        await editProduit(produit.id,product);
+        editProduit(produit.id,product)
+            .then((response)=>{
+                if (response.status === 200) {
+                    onFormSubmit();
+                }
+            })
+            .catch(() => alert("Something wrong occured! Try later"));
     }
 
     const handleCancel = () => {

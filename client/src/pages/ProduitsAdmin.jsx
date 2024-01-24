@@ -11,8 +11,8 @@ const ProduitsAdmin = () => {
 
   useEffect(() => {
     getAllProducts().then((products) => {
-      if (products) {
-        setProduits(products.data.produits);
+      if (products.data) {
+        setProduits(products.data);
       }
     });
   }, []);
@@ -119,7 +119,7 @@ const ProduitsAdmin = () => {
         >
           <div className="relative w-auto max-w-2xl mx-auto my-6">
             <div className="relative bg-white rounded-lg shadow-lg">
-              <ProduitAddForm />
+              <ProduitAddForm onFormSubmit={() => setModalAddOpen(false)}/>
               <button
                 className="absolute top-0 right-0 p-4 text-xl font-semibold"
                 onClick={closeModalAdd}
@@ -141,7 +141,7 @@ const ProduitsAdmin = () => {
         >
           <div className="relative w-auto max-w-2xl mx-auto my-6">
             <div className="relative bg-white rounded-lg shadow-lg">
-              <ProduitEditForm produit={selectedProduit} />
+              <ProduitEditForm produit={selectedProduit} onFormSubmit={() => setModalEditOpen(false)}/>
               <button
                 className="absolute top-0 right-0 p-4 text-xl font-semibold"
                 onClick={closeModalEdit}

@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import {useState} from 'react';
 import { postAddProduit } from '../apis/produit.api';
 
-export const ProduitAddForm = () => {
+export const ProduitAddForm = ({onFormSubmit}) => {
     
     const [nom , setNom ] = useState('');
     const [prix , setPrix ] = useState(0);
@@ -11,7 +12,14 @@ export const ProduitAddForm = () => {
         e.preventDefault()
         console.log(nom + prix + quantity)
         const produit = {nom : nom , prix : prix , quantity : quantity};
-        await postAddProduit(produit);
+        postAddProduit(produit)
+            .then(response => {
+                console.log(response.status);
+                if (response.status === 201) {
+                    onFormSubmit();
+                }
+            })
+            .catch(() => alert("Something wrong occured! Try later"));
     }
 
     const handleCancel = () => {
