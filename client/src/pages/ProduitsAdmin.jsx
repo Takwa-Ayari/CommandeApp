@@ -5,8 +5,8 @@ import { ProduitEditForm } from "../components/ProduitEditForm";
 
 const ProduitsAdmin = () => {
   const [produits, setProduits] = useState([]);
-  const [isModalAddOpen, setModalAddOpen] = useState(false);
-  const [isModalEditOpen, setModalEditOpen] = useState(false);
+  const [isModalAddOpen, setIsModalAddOpen] = useState(false);
+  const [isModalEditOpen, setIsModalEditOpen] = useState(false);
   const [selectedProduit, setSelectedProduit] = useState(null);
 
   useEffect(() => {
@@ -24,20 +24,20 @@ const ProduitsAdmin = () => {
   }
 
   const openModalAdd = () => {
-    setModalAddOpen(true);
+    setIsModalAddOpen(true);
   };
 
   const closeModalAdd = () => {
-    setModalAddOpen(false);
+    setIsModalAddOpen(false);
   };
 
   const openModalEdit = (produit) => {
-    setModalEditOpen(true);
+    setIsModalEditOpen(true);
     setSelectedProduit(produit)
   };
 
   const closeModalEdit = () => {
-    setModalEditOpen(false);
+    setIsModalEditOpen(false);
   };
 
   return (
@@ -54,7 +54,7 @@ const ProduitsAdmin = () => {
             </div>
             <input type="text" id="table-search" className="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search for items" />
         </div>
-        <button data-modal-target="default-modal" data-modal-toggle="default-modal" className="text-green-700 font-extrabold hover:text-white border border-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={openModalAdd}>+</button>
+        <button data-modal-target="default-modal" data-modal-toggle="default-modal" className="text-green-700 font-extrabold hover:text-white border border-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-sm px-5 py-2.5 text-center" onClick={openModalAdd}>+</button>
     </div>
 
     </div>
@@ -91,19 +91,18 @@ const ProduitsAdmin = () => {
               <td className="px-6 py-4">{product.quantity}</td>
               <td className="px-6 py-4">{product.prix}</td>
               <td className="px-6 py-4">
-                <a
-                  href="#"
+                <button
                   className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                     onClick={() => openModalEdit(product)}
                 >
                   Edit
-                </a>
-                <a
+                </button>
+                <button
                   className="text-red-700 cursor-pointer hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                   onClick={() => deleteProduit(product.id)}
                 >
                   Delete
-                </a>
+                </button>
               </td>
             </tr>
           ))}
@@ -119,7 +118,7 @@ const ProduitsAdmin = () => {
         >
           <div className="relative w-auto max-w-2xl mx-auto my-6">
             <div className="relative bg-white rounded-lg shadow-lg">
-              <ProduitAddForm onFormSubmit={() => setModalAddOpen(false)}/>
+              <ProduitAddForm onFormSubmit={() => setIsModalAddOpen(false)}/>
               <button
                 className="absolute top-0 right-0 p-4 text-xl font-semibold"
                 onClick={closeModalAdd}
@@ -141,7 +140,7 @@ const ProduitsAdmin = () => {
         >
           <div className="relative w-auto max-w-2xl mx-auto my-6">
             <div className="relative bg-white rounded-lg shadow-lg">
-              <ProduitEditForm produit={selectedProduit} onFormSubmit={() => setModalEditOpen(false)}/>
+              <ProduitEditForm produit={selectedProduit} onFormSubmit={() => setIsModalEditOpen(false)}/>
               <button
                 className="absolute top-0 right-0 p-4 text-xl font-semibold"
                 onClick={closeModalEdit}
