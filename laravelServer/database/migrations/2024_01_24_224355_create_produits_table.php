@@ -20,7 +20,7 @@ class CreateProduitsTable extends Migration
             $table->integer('quantity');
             
             // Foreign key relationship to Categorie
-            $table->foreign('categorie_id')->references('id')->on('categories');
+            $table->foreign('categorie_id')->constrained();
 
             $table->timestamps();
         });

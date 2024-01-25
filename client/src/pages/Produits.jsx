@@ -8,7 +8,7 @@ function Produits() {
   const [produits, setProduits] = useState([]);
 
   useEffect(() => {
-    getAllProducts().then(result => setProduits(result.data.produits))
+    getAllProducts().then(result => setProduits(result.data))
   }, []);
 
   return (
